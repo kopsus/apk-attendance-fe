@@ -1,4 +1,5 @@
 import 'package:design_system/design_system.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
@@ -21,11 +22,11 @@ class _OnboardingPageState extends State<OnboardingPage> {
     SizeConfig().init(context);
     return Scaffold(
       backgroundColor: DistroColors.primary_400,
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Visibility(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SafeArea(
+            child: Visibility(
               visible: currentPage != list.length - 1,
               child: Padding(
                 padding: const EdgeInsets.all(24.0),
@@ -51,29 +52,31 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 ),
               ),
             ),
-            const Spacer(),
-            SvgPicture.asset(
-              list[currentPage].imageUrl, 
-              width: SizeConfig.safeBlockHorizontal*80,
-              fit: BoxFit.fitWidth,
+          ),
+          const Spacer(),
+          SvgPicture.asset(
+            list[currentPage].imageUrl, 
+            width: SizeConfig.safeBlockHorizontal*80,
+            fit: BoxFit.fitWidth,
+          ),
+          const Spacer(),
+          Container(
+            width: double.infinity,
+            height: SizeConfig.blockSizeVertical*40,
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
+              color: DistroColors.white,
             ),
-            const Spacer(),
-            Container(
-              width: double.infinity,
-              height: SizeConfig.blockSizeVertical*40,
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
-                color: DistroColors.white,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(list[currentPage].title, style: DistroTypography.bodyLargeSemiBold.copyWith(color: DistroColors.tertiary_600, fontSize: 22)),
-                  const VerticalSeparator(height: 1),
-                  Text(list[currentPage].description, style: DistroTypography.bodyLargeRegular.copyWith(color: DistroColors.tertiary_600,),),
-                  const Spacer(),
-                  Row(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(list[currentPage].title, style: DistroTypography.bodyLargeSemiBold.copyWith(color: DistroColors.tertiary_600, fontSize: 22)),
+                const VerticalSeparator(height: 1),
+                Text(list[currentPage].description, style: DistroTypography.bodyLargeRegular.copyWith(color: DistroColors.tertiary_600,),),
+                const Spacer(),
+                SafeArea(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
@@ -112,12 +115,12 @@ class _OnboardingPageState extends State<OnboardingPage> {
                           }
                         })
                     ],
-                  )
-                ],
-              ),
-            )
-          ],
-        )
+                  ),
+                )
+              ],
+            ),
+          )
+        ],
       )
     );
   }
