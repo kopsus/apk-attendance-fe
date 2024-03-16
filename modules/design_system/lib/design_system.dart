@@ -6,5 +6,6 @@ export 'components/button.dart';
 export 'components/list_tile.dart';
 export 'components/alert.dart';
 export 'components/card.dart';
+export 'components/textfield.dart';
 export 'components/separator.dart';
 export 'utils/size.dart';
