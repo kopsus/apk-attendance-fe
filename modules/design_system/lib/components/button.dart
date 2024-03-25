@@ -109,7 +109,7 @@ class DistroOutlineButton extends StatelessWidget {
               minimumSize: Size(fullWidth ? double.infinity : 0, size.height),
               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(100),
+                  borderRadius: BorderRadius.circular(8),
                   side: const BorderSide(color: DistroColors.tertiary_200))),
           onPressed: enabled && !loading ? onPressed : null,
           child: Row(

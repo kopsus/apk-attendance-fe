@@ -4,9 +4,11 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:myapp/features/dashboard/model/menu_model.dart';
+import 'package:myapp/features/dashboard/views/map_page.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
@@ -116,33 +118,38 @@ class _DashboardViewState extends State<DashboardView> {
                           color: DistroColors.tertiary_50
                       )),
                       VerticalSeparator(height: 3),
-                      Container(
-                        height: SizeConfig.safeBlockHorizontal*30,
-                        width: SizeConfig.safeBlockHorizontal*30,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(24),
-                          gradient: LinearGradient(
-                            begin: Alignment.topRight,
-                            end: Alignment.bottomLeft,
-                            colors: [
-                              Color(0xff88D8FF),
-                              Colors.white
+                      InkWell(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (_)=>MapPage(location: GeoPoint(latitude: 6.175895, longitude: 106.827125),)));
+                        },
+                        child: Container(
+                          height: SizeConfig.safeBlockHorizontal*30,
+                          width: SizeConfig.safeBlockHorizontal*30,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(24),
+                            gradient: LinearGradient(
+                              begin: Alignment.topRight,
+                              end: Alignment.bottomLeft,
+                              colors: [
+                                Color(0xff88D8FF),
+                                Colors.white
+                              ]
+                            ),
+                            boxShadow: [
+                              DistroShadows.shadow_200,
+                              DistroShadows.shadow_300
                             ]
                           ),
-                          boxShadow: [
-                            DistroShadows.shadow_200,
-                            DistroShadows.shadow_300
-                          ]
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SvgPicture.asset('assets/illustration/hand.svg', width: 56, fit: BoxFit.fitWidth),
-                            VerticalSeparator(height: 1),
-                            Text('Clock-in', 
-                              style: DistroTypography.bodySmallSemiBold.copyWith(
-                                color: DistroColors.tertiary_700))
-                          ],
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SvgPicture.asset('assets/illustration/hand.svg', width: 56, fit: BoxFit.fitWidth),
+                              VerticalSeparator(height: 1),
+                              Text('Clock-in', 
+                                style: DistroTypography.bodySmallSemiBold.copyWith(
+                                  color: DistroColors.tertiary_700))
+                            ],
+                          ),
                         ),
                       ),
                       VerticalSeparator(height: 3),
