@@ -18,6 +18,8 @@ environment:
 dependencies:
   design_system:
     path: modules/design_system
+  core:
+    path: modules/core
   flutter_svg: ^2.0.10+1
   flutter:
     sdk: flutter
@@ -27,9 +29,14 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   intl: ^0.19.0
-  flutter_osm_plugin: ^0.70.4
+  flutter_map: ^6.1.0
+  latlong2: ^0.9.0
   camera: ^0.10.5+9
   geolocator: ^11.0.0
+  geocoding: ^3.0.0
+  flutter_bloc: ^8.1.5
+  location: ^6.0.1
+  equatable: ^2.0.5
 
 dev_dependencies:
   flutter_test:

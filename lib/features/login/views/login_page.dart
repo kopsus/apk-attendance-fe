@@ -1,6 +1,5 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:myapp/features/dashboard/views/dashboard_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -20,36 +19,33 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: DistroColors.primary_400,
+      backgroundColor: DistroColors.primary_600,
       body: ListView(
         padding: EdgeInsets.zero,
         children: [
           SafeArea(
             child: SizedBox(
-              height: SizeConfig.safeBlockVertical*40,
+              height: SizeConfig.safeBlockVertical * 40,
               child: Center(
-                child: Image.asset(
-                  'assets/illustration/logo.png',
-                  width: SizeConfig.safeBlockHorizontal*40, 
-                  fit: BoxFit.fitWidth
-                ),
+                child: Image.asset('assets/illustration/logo.png',
+                    width: SizeConfig.safeBlockHorizontal * 60,
+                    fit: BoxFit.fitWidth),
               ),
             ),
           ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
-              color: DistroColors.white
-            ),
+                borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
+                color: DistroColors.white),
             child: ConstrainedBox(
               constraints: BoxConstraints(
-                minHeight: SizeConfig.safeBlockVertical*60,
+                minHeight: SizeConfig.safeBlockVertical * 60,
               ),
               child: Form(
                 key: _formKey,
                 onChanged: () {
-                  if(_formKey.currentState!.validate()){
+                  if (_formKey.currentState!.validate()) {
                     setState(() {
                       _enableButton = true;
                     });
@@ -62,18 +58,18 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Email", 
-                      style: DistroTypography.bodyLargeSemiBold.copyWith(
-                        color: DistroColors.tertiary_600)),
+                    Text("Email",
+                        style: DistroTypography.bodyLargeSemiBold
+                            .copyWith(color: DistroColors.tertiary_600)),
                     VerticalSeparator(height: 1),
                     DistroTextField(
                       placeholder: 'Email Address',
                       controller: _emailController,
-                      validator: (value){
-                        if(value == '' || value == null){
+                      validator: (value) {
+                        if (value == '' || value == null) {
                           return 'Please input your email';
-                        } else if(!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                        } else if (!RegExp(
+                                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                             .hasMatch(value)) {
                           return 'Invalid email format';
                         } else {
@@ -82,27 +78,27 @@ class _LoginPageState extends State<LoginPage> {
                       },
                     ),
                     VerticalSeparator(height: 2),
-                    Text(
-                      "Password", 
-                      style: DistroTypography.bodyLargeSemiBold.copyWith(
-                        color: DistroColors.tertiary_600)),
+                    Text("Password",
+                        style: DistroTypography.bodyLargeSemiBold
+                            .copyWith(color: DistroColors.tertiary_600)),
                     VerticalSeparator(height: 1),
                     DistroTextField(
                       placeholder: 'Password',
                       controller: _passwordController,
                       obscureText: _isHidePassword,
                       suffixIcon: InkWell(
-                        onTap: ()=>setState(() {
+                        onTap: () => setState(() {
                           _isHidePassword = !_isHidePassword;
                         }),
-                        child: Icon( _isHidePassword ? 
-                          Icons.visibility_outlined : 
-                          Icons.visibility_off_outlined,
+                        child: Icon(
+                          _isHidePassword
+                              ? Icons.visibility_outlined
+                              : Icons.visibility_off_outlined,
                           color: DistroColors.black,
                         ),
                       ),
                       validator: (value) {
-                        if(value == '' || value == null){
+                        if (value == '' || value == null) {
                           return 'Please input your password';
                         } else {
                           return null;
@@ -114,29 +110,27 @@ class _LoginPageState extends State<LoginPage> {
                       alignment: Alignment.centerRight,
                       child: Text(
                         'Forgot Password?',
-                        style: DistroTypography.bodySmallSemiBold.copyWith(
-                          color: DistroColors.tertiary_500
-                        ),),
+                        style: DistroTypography.bodySmallSemiBold
+                            .copyWith(color: DistroColors.tertiary_500),
+                      ),
                     ),
                     VerticalSeparator(height: 3),
                     DistroElevatedButton(
-                      enabled: _enableButton,
-                      fullWidth: true,
-                      label: Text(
-                        'Login',
-                        style: DistroTypography.bodySmallSemiBold
-                      ), 
-                      onPressed: (){
-                        Navigator.pushAndRemoveUntil(
-                          context, 
-                          MaterialPageRoute(builder: (_)=>DashboardPage()), 
-                          (route) => false);
-                      }
-                    )
+                        enabled: _enableButton,
+                        fullWidth: true,
+                        label: Text('Login',
+                            style: DistroTypography.bodySmallSemiBold),
+                        onPressed: () {
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => DashboardPage()),
+                              (route) => false);
+                        })
                   ],
                 ),
               ),
-            ),            
+            ),
           )
         ],
       ),
