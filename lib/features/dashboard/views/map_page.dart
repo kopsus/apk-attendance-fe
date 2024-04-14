@@ -2,8 +2,10 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:myapp/features/dashboard/bloc/dashboard_bloc.dart';
+import 'package:myapp/features/dashboard/views/dashboard_page.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
@@ -14,6 +16,13 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> {
   MapController controller = MapController();
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,25 +30,35 @@ class _MapPageState extends State<MapPage> {
         listener: (context, state) {
           if (state.status == DashboardStatus.success) {
             setState(() {
-              controller.move(LatLng(state.lat, state.long), 15);
+              controller.move(
+                  LatLng(state.position!.latitude, state.position!.longitude),
+                  15);
             });
+          }
+          if (state.status == DashboardStatus.postSuccess) {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (_) => DashboardPage()),
+                (route) => false);
+          }
+          if (state.status == DashboardStatus.failed) {
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                backgroundColor: DistroColors.warning_500,
+                content: Text(
+                  'Gagal mengirim ke server, cek koneksi anda atau tunggu beberapa saat lagi',
+                  style: TextStyle(color: Colors.white),
+                )));
           }
         },
         builder: (context, state) {
-          if (state.status == DashboardStatus.loading) {
-            return const Center(
-              child: CircularProgressIndicator(
-                color: DistroColors.primary_500,
-              ),
-            );
-          }
           return SafeArea(
             child: Stack(
               children: [
                 FlutterMap(
                   mapController: controller,
                   options: MapOptions(
-                      initialCenter: LatLng(state.lat, state.long),
+                      initialCenter:
+                          LatLng(state.companyLat, state.companyLong),
                       initialZoom: 15,
                       interactionOptions: const InteractionOptions(
                           flags: ~InteractiveFlag.doubleTapZoom)),
@@ -47,9 +66,17 @@ class _MapPageState extends State<MapPage> {
                     osmTileLayer,
                     MarkerLayer(markers: [
                       Marker(
+                          point: LatLng(state.companyLat, state.companyLong),
+                          child: Icon(
+                            size: 40,
+                            Icons.location_on,
+                            color: Colors.red,
+                          )),
+                      Marker(
                           width: 24,
                           height: 24,
-                          point: LatLng(state.lat, state.long),
+                          point: LatLng(state.position!.latitude,
+                              state.position!.longitude),
                           child: Container(
                             padding: EdgeInsets.all(4),
                             decoration: BoxDecoration(
@@ -127,27 +154,49 @@ class _MapPageState extends State<MapPage> {
                     ),
                     VerticalSeparator(height: 2),
                     Text(
-                      'Jl. Simpang Lima, Mugassari, Kec. Semarang Sel., Kota Semarang, Jawa Tengah 50249',
+                      state.companyAddress,
                       style: DistroTypography.bodyLargeRegular
                           .copyWith(color: DistroColors.tertiary_600),
                     ),
                     VerticalSeparator(height: 2),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        DistroOutlineButton(
-                            width: SizeConfig.safeBlockHorizontal * 35,
-                            label: Text('Refresh'),
-                            onPressed: () {
-                              context
-                                  .read<DashboardBloc>()
-                                  .add(RefreshLocation());
-                            }),
-                        DistroElevatedButton(
-                            width: SizeConfig.safeBlockHorizontal * 35,
-                            label: Text('Confirm'),
-                            onPressed: () {})
-                      ],
+                    BlocBuilder<DashboardBloc, DashboardState>(
+                      builder: (context, state) {
+                        if (state.status == DashboardStatus.loading) {
+                          return const Center(
+                            child: CircularProgressIndicator(
+                              color: DistroColors.primary_500,
+                            ),
+                          );
+                        }
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            DistroOutlineButton(
+                                width: SizeConfig.safeBlockHorizontal * 35,
+                                label: Text('Refresh'),
+                                onPressed: () {
+                                  context
+                                      .read<DashboardBloc>()
+                                      .add(RefreshLocation());
+                                }),
+                            DistroElevatedButton(
+                                width: SizeConfig.safeBlockHorizontal * 35,
+                                label: Text('Confirm'),
+                                onPressed: () async {
+                                  var image = await ImagePicker().pickImage(
+                                      preferredCameraDevice: CameraDevice.front,
+                                      source: ImageSource.camera,
+                                      imageQuality: 25,
+                                      requestFullMetadata: false);
+                                  if (image != null) {
+                                    context
+                                        .read<DashboardBloc>()
+                                        .add(SendAttendanceData(image: image));
+                                  }
+                                })
+                          ],
+                        );
+                      },
                     )
                   ],
                 ),

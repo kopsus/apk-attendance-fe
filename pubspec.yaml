@@ -37,6 +37,10 @@ dependencies:
   flutter_bloc: ^8.1.5
   location: ^6.0.1
   equatable: ^2.0.5
+  flutter_native_splash: ^2.4.0
+  shared_preferences: ^2.2.2
+  image_picker: ^1.0.7
+  pull_to_refresh: ^2.0.0
 
 dev_dependencies:
   flutter_test:

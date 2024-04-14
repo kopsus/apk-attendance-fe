@@ -1,15 +1,29 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:myapp/features/dashboard/views/dashboard_page.dart';
+import 'package:myapp/features/login/bloc/login_bloc.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class LoginPage extends StatelessWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => LoginBloc(),
+      child: const LoginView(),
+    );
+  }
 }
 
-class _LoginPageState extends State<LoginPage> {
+class LoginView extends StatefulWidget {
+  const LoginView({super.key});
+
+  @override
+  State<LoginView> createState() => _LoginViewState();
+}
+
+class _LoginViewState extends State<LoginView> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   bool _isHidePassword = true;
@@ -115,18 +129,45 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     VerticalSeparator(height: 3),
-                    DistroElevatedButton(
-                        enabled: _enableButton,
-                        fullWidth: true,
-                        label: Text('Login',
-                            style: DistroTypography.bodySmallSemiBold),
-                        onPressed: () {
+                    BlocConsumer<LoginBloc, LoginState>(
+                      listener: (context, state) {
+                        if (state.status == LoginStatus.success) {
                           Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
                                   builder: (_) => DashboardPage()),
                               (route) => false);
-                        })
+                        }
+                        if (state.status == LoginStatus.failed) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              backgroundColor: DistroColors.warning_500,
+                              content: Text(
+                                state.errorMessage,
+                                style: TextStyle(color: Colors.white),
+                              )));
+                        }
+                      },
+                      builder: (context, state) {
+                        if (state.status == LoginStatus.loading) {
+                          return DistroElevatedButton(
+                              fullWidth: true,
+                              loading: true,
+                              label: Text('Login',
+                                  style: DistroTypography.bodySmallSemiBold),
+                              onPressed: () {});
+                        }
+                        return DistroElevatedButton(
+                            enabled: _enableButton,
+                            fullWidth: true,
+                            label: Text('Login',
+                                style: DistroTypography.bodySmallSemiBold),
+                            onPressed: () {
+                              context.read<LoginBloc>().add(Login(
+                                  email: _emailController.text,
+                                  password: _passwordController.text));
+                            });
+                      },
+                    )
                   ],
                 ),
               ),
