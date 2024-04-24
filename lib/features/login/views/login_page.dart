@@ -42,7 +42,7 @@ class _LoginViewState extends State<LoginView> {
               height: SizeConfig.safeBlockVertical * 40,
               child: Center(
                 child: Image.asset('assets/illustration/logo.png',
-                    width: SizeConfig.safeBlockHorizontal * 60,
+                    width: SizeConfig.safeBlockHorizontal * 50,
                     fit: BoxFit.fitWidth),
               ),
             ),
