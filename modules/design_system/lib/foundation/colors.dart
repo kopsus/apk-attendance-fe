@@ -13,6 +13,7 @@ class DistroColors {
   static const Color tertiary_200 = Color(0xffECECEC);
   static const Color tertiary_300 = Color(0xffC5C5C5);
   static const Color tertiary_400 = Color(0xffBABCBF);
+  static const Color tertiary_450 = Color(0xff777986);
   static const Color tertiary_500 = Color(0xff454545);
   static const Color tertiary_600 = Color(0xff222831);
   static const Color tertiary_700 = Color(0xff0C0E11);

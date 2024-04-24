@@ -9,6 +9,7 @@ import 'package:intl/intl.dart';
 import 'package:myapp/features/dashboard/bloc/dashboard_bloc.dart';
 import 'package:myapp/features/dashboard/model/menu_model.dart';
 import 'package:myapp/features/dashboard/views/map_page.dart';
+import 'package:myapp/features/profile/views/profile_page.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
@@ -70,26 +71,119 @@ class _DashboardViewState extends State<DashboardView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: DistroColors.white,
-      body: Stack(
-        children: [
-          //background
-          Container(
-            width: SizeConfig.screenWidth,
-            height: SizeConfig.screenHeight,
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [Color(0xff1E5EBD), Color(0xff032250)])),
+    return DefaultTabController(
+      length: 5,
+      child: Scaffold(
+        backgroundColor: DistroColors.white,
+        body: TabBarView(
+          children: [
+            Stack(
+              children: [
+                //background
+                Container(
+                  width: SizeConfig.screenWidth,
+                  height: SizeConfig.screenHeight,
+                  decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [Color(0xff1E5EBD), Color(0xff032250)])),
+                ),
+                //body
+                bodySection(),
+                //appbar
+                homepageAppBar(),
+                //clock-in or clock-out
+              ],
+            ),
+            SizedBox(),
+            SizedBox(),
+            SizedBox(),
+            ProfilePage()
+          ],
+        ),
+        bottomNavigationBar: Container(
+          decoration: BoxDecoration(color: Colors.white, boxShadow: [
+            BoxShadow(
+                offset: Offset(0, -4),
+                color: Color(0xff18274B).withOpacity(.1),
+                spreadRadius: -2,
+                blurRadius: 4),
+            BoxShadow(
+                offset: Offset(0, -2),
+                color: Color(0xff18274B).withOpacity(.12),
+                spreadRadius: -2,
+                blurRadius: 4)
+          ]),
+          child: TabBar(
+            labelPadding: EdgeInsets.symmetric(horizontal: 4),
+            padding: EdgeInsets.zero,
+            indicator: BoxDecoration(),
+            unselectedLabelStyle: DistroTypography.captionLargeRegular
+                .copyWith(color: DistroColors.tertiary_500),
+            unselectedLabelColor: DistroColors.tertiary_500,
+            labelStyle: DistroTypography.captionLargeRegular
+                .copyWith(color: DistroColors.primary_600),
+            labelColor: DistroColors.primary_600,
+            tabs: [
+              Container(
+                padding: EdgeInsets.fromLTRB(8, 8, 0, 8),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.home_outlined),
+                    VerticalSeparator(height: .35),
+                    Text('Home')
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.calendar_month_outlined),
+                    VerticalSeparator(height: .35),
+                    Text('Schedule')
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.people_outline),
+                    VerticalSeparator(height: .35),
+                    Text('Employee')
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.history_outlined),
+                    VerticalSeparator(height: .35),
+                    Text('Activity')
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(0, 8, 8, 8),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.person_outlined),
+                    VerticalSeparator(height: .35),
+                    Text('Profile')
+                  ],
+                ),
+              )
+            ],
           ),
-          //body
-          bodySection(),
-          //appbar
-          homepageAppBar(),
-          //clock-in or clock-out
-        ],
+        ),
       ),
     );
   }
@@ -201,69 +295,62 @@ class _DashboardViewState extends State<DashboardView> {
                               context: context,
                               builder: (buildContext) => BlocProvider.value(
                                     value: context.read<DashboardBloc>(),
-                                    child: PopScope(
-                                      onPopInvoked: (pop) {
-                                        context
-                                            .read<DashboardBloc>()
-                                            .add(InitEvent());
-                                      },
-                                      child: DistroAlertDialog(
-                                        contents: [
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            children: [
-                                              InkWell(
-                                                onTap: () {
-                                                  Navigator.pop(buildContext);
-                                                },
-                                                child: const Icon(
-                                                  Icons.close_rounded,
-                                                  color: DistroColors.black,
-                                                ),
+                                    child: DistroAlertDialog(
+                                      contents: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            InkWell(
+                                              onTap: () {
+                                                Navigator.pop(buildContext);
+                                              },
+                                              child: const Icon(
+                                                Icons.close_rounded,
+                                                color: DistroColors.black,
                                               ),
-                                            ],
-                                          ),
-                                          VerticalSeparator(height: 2),
-                                          Image.asset(
-                                            'assets/illustration/not_near_location.png',
-                                            width:
-                                                SizeConfig.safeBlockHorizontal *
-                                                    60,
-                                            fit: BoxFit.fitWidth,
-                                          ),
-                                          VerticalSeparator(height: 2),
-                                          Text(
-                                            'You’re outside the attendance area',
-                                            style: DistroTypography
-                                                .bodyLargeSemiBold
-                                                .copyWith(
-                                                    color: DistroColors
-                                                        .tertiary_700),
-                                          ),
-                                          VerticalSeparator(height: 1),
-                                          Text(
-                                            'Sorry, it looks like you are outside the absence area. To continue, please do so with permission.',
-                                            style: DistroTypography
-                                                .bodySmallRegular
-                                                .copyWith(
-                                                    color: DistroColors.black),
-                                          ),
-                                        ],
-                                        actions: [
-                                          DistroElevatedButton(
-                                              fullWidth: true,
-                                              label: Text(
-                                                'Permissions',
-                                                style: DistroTypography
-                                                    .bodySmallSemiBold
-                                                    .copyWith(
-                                                        color:
-                                                            DistroColors.white),
-                                              ),
-                                              onPressed: () {})
-                                        ],
-                                      ),
+                                            ),
+                                          ],
+                                        ),
+                                        VerticalSeparator(height: 2),
+                                        Image.asset(
+                                          'assets/illustration/not_near_location.png',
+                                          width:
+                                              SizeConfig.safeBlockHorizontal *
+                                                  60,
+                                          fit: BoxFit.fitWidth,
+                                        ),
+                                        VerticalSeparator(height: 2),
+                                        Text(
+                                          'You’re outside the attendance area',
+                                          style: DistroTypography
+                                              .bodyLargeSemiBold
+                                              .copyWith(
+                                                  color: DistroColors
+                                                      .tertiary_700),
+                                        ),
+                                        VerticalSeparator(height: 1),
+                                        Text(
+                                          'Sorry, it looks like you are outside the absence area. To continue, please do so with permission.',
+                                          style: DistroTypography
+                                              .bodySmallRegular
+                                              .copyWith(
+                                                  color: DistroColors.black),
+                                        ),
+                                      ],
+                                      actions: [
+                                        DistroElevatedButton(
+                                            fullWidth: true,
+                                            label: Text(
+                                              'Permissions',
+                                              style: DistroTypography
+                                                  .bodySmallSemiBold
+                                                  .copyWith(
+                                                      color:
+                                                          DistroColors.white),
+                                            ),
+                                            onPressed: () {})
+                                      ],
                                     ),
                                   ));
                         } else if (state.isNearLocation == true) {

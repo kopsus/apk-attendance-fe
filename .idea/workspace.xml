@@ -9,48 +9,21 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4f84bb81-3fc1-4bd0-841e-0b748fdb1284" name="Changes" comment="feat (core) : add core module and location">
-      <change afterPath="$PROJECT_DIR$/assets/illustration/not_near_location.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flutter_native_splash.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/features/login/bloc/login_bloc.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/features/login/bloc/login_event.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/features/login/bloc/login_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/features/onboarding/bloc/onboarding_bloc.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/features/onboarding/bloc/onboarding_event.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/features/onboarding/bloc/onboarding_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/modules/core/lib/datasources/auth_datasources.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/modules/core/lib/datasources/dashboard_datasources.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/modules/core/lib/models/dashboard_history_model.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/modules/core/lib/models/dashboard_status_model.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/modules/core/lib/models/login_model.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/modules/core/lib/models/user_detail_model.dart" afterDir="false" />
+    <list default="true" id="4f84bb81-3fc1-4bd0-841e-0b748fdb1284" name="Changes" comment="add splash screen">
+      <change afterPath="$PROJECT_DIR$/assets/icons/ic_cerf.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/icons/ic_info.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/icons/ic_language.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/icons/ic_phone.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/icons/ic_privacy.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/features/profile/views/bloc/profile_bloc.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/features/profile/views/bloc/profile_event.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/features/profile/views/bloc/profile_state.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/features/profile/views/profile_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-v21/launch_background.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable-v21/launch_background.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable/launch_background.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable/launch_background.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/values-night/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/values-night/styles.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/values/styles.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/LaunchImage.imageset/Contents.json" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/LaunchImage.imageset/Contents.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@2x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@3x.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@3x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Base.lproj/LaunchScreen.storyboard" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Base.lproj/LaunchScreen.storyboard" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Info.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/dashboard/bloc/dashboard_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/dashboard/bloc/dashboard_bloc.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/dashboard/views/dashboard_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/dashboard/views/dashboard_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/dashboard/views/map_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/dashboard/views/map_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/login/views/login_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/login/views/login_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/onboarding/views/onboarding_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/onboarding/views/onboarding_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/linux/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/linux/flutter/generated_plugin_registrant.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/linux/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/linux/flutter/generated_plugins.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/lib/core.dart" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/lib/core.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/lib/models/errors_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/lib/models/errors_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/core/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/modules/core/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myapp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/myapp.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/design_system/lib/foundation/colors.dart" beforeDir="false" afterPath="$PROJECT_DIR$/modules/design_system/lib/foundation/colors.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/windows/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/windows/flutter/generated_plugin_registrant.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/windows/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/windows/flutter/generated_plugins.cmake" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,12 +63,14 @@
     <property name="dart.analysis.tool.window.force.activate" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/features/onboarding/bloc" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/icons" />
     <property name="settings.editor.selected.configurable" value="flutter.settings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\MobileApp-Dev\distro-flutter-app\assets\icons" />
+      <recent name="D:\MobileApp-Dev\distro-flutter-app\lib\features\profile\views" />
       <recent name="D:\MobileApp-Dev\distro-flutter-app\lib\features\onboarding\bloc" />
       <recent name="D:\MobileApp-Dev\distro-flutter-app\lib\features\login\bloc" />
       <recent name="D:\MobileApp-Dev\distro-flutter-app\modules" />
@@ -120,7 +95,21 @@
       <option name="project" value="LOCAL" />
       <updated>1712695636126</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="api integration and validation">
+      <created>1713085188691</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1713085188691</updated>
+    </task>
+    <task id="LOCAL-00003" summary="add splash screen">
+      <created>1713085214954</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1713085214954</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -142,6 +131,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat (core) : add core module and location" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat (core) : add core module and location" />
+    <MESSAGE value="api integration and validation" />
+    <MESSAGE value="add splash screen" />
+    <option name="LAST_COMMIT_MESSAGE" value="add splash screen" />
   </component>
 </project>

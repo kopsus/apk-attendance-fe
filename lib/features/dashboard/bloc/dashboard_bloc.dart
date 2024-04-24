@@ -86,22 +86,43 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     try {
       emit(state.copyWith(status: DashboardStatus.loading));
       final result = await DashboardDatasource.getDashboardStatus();
-
+      String clockIn = result.data.clockIn != null
+          ? DateFormat('HH:mm').format(
+              DateTime.fromMillisecondsSinceEpoch(result.data.clockIn!)
+                  .toLocal())
+          : '--:--';
+      String clockOut = result.data.clockOut != null
+          ? DateFormat('HH:mm').format(
+              DateTime.fromMillisecondsSinceEpoch(result.data.clockOut!)
+                  .toLocal())
+          : '--:--';
+      String workingHour = '--:--';
+      if (result.data.clockIn != null && result.data.clockOut != null) {
+        var duration =
+            DateTime.fromMillisecondsSinceEpoch(result.data.clockOut!)
+                .difference(
+                    DateTime.fromMillisecondsSinceEpoch(result.data.clockIn!));
+        final hours = duration.inHours;
+        final minutes = duration.inMinutes.remainder(60);
+        workingHour = '$hours h $minutes m';
+      }
       if (result.data.action == 'clock-in') {
         emit(state.copyWith(
             status: DashboardStatus.success,
             isClockIn: false,
+            clockInTime: clockIn,
+            clockOutTime: clockOut,
+            workingHours: workingHour,
             companyAddress: result.data.companyAddress,
             companyLat: result.data.companyLatitude,
             companyLong: result.data.companyLongitude));
       } else {
-        String clockIn = DateFormat('HH:mm').format(
-            DateTime.fromMillisecondsSinceEpoch(result.data.clockIn!)
-                .toLocal());
         emit(state.copyWith(
             status: DashboardStatus.success,
             isClockIn: true,
             clockInTime: clockIn,
+            clockOutTime: clockOut,
+            workingHours: workingHour,
             companyAddress: result.data.companyAddress,
             companyLat: result.data.companyLatitude,
             companyLong: result.data.companyLongitude));
@@ -217,7 +238,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
   bool checkNearLocation(
       Position currentPosition, double companyLat, double companyLong) {
     var isNearLocation = false;
-    var threshold = 50;
+    var threshold = 150;
 
     if (Platform.isAndroid) {
       bool isMockLocation = currentPosition.isMocked;
