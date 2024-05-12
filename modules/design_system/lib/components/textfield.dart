@@ -48,19 +48,19 @@ class DistroTextField extends StatelessWidget {
         fillColor: DistroColors.tertiary_100,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: DistroColors.tertiary_200)
+          borderSide: const BorderSide(color: DistroColors.tertiary_200)
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: DistroColors.tertiary_200)
+          borderSide: const BorderSide(color: DistroColors.tertiary_200)
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: DistroColors.warning_500)
+          borderSide: const BorderSide(color: DistroColors.warning_500)
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: DistroColors.warning_500)
+          borderSide: const BorderSide(color: DistroColors.warning_500)
         ),
         suffixIcon: suffixIcon
       ),

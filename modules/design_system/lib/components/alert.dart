@@ -13,12 +13,12 @@ class DistroAlertDialog extends StatelessWidget {
     return AlertDialog(
       backgroundColor: DistroColors.white,
       surfaceTintColor: Colors.transparent,
-      contentPadding: EdgeInsets.all(24),
+      contentPadding: const EdgeInsets.all(24),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           ...contents,
-          actions.isEmpty ? SizedBox.shrink() : VerticalSeparator(height: 2),
+          actions.isEmpty ? const SizedBox.shrink() : const VerticalSeparator(height: 2),
           actions.length == 1
               ? actions[0]
               : Row(

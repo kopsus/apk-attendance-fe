@@ -12,7 +12,7 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ProfileBloc()..add(InitEvent()),
-      child: ProfileView(),
+      child: const ProfileView(),
     );
   }
 }
@@ -24,25 +24,25 @@ class ProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        color: Color(0xffF5F5F5),
+        color: const Color(0xffF5F5F5),
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
               decoration: BoxDecoration(color: DistroColors.white, boxShadow: [
                 DistroShadows.shadow_200,
                 DistroShadows.shadow_300
               ]),
               child: Row(
                 children: [
-                  Spacer(),
+                  const Spacer(),
                   Text(
                     'Profile',
                     style: DistroTypography.bodyLargeSemiBold
                         .copyWith(color: DistroColors.black),
                   ),
-                  Spacer(),
-                  Icon(
+                  const Spacer(),
+                  const Icon(
                     Icons.notifications_none_rounded,
                     color: DistroColors.tertiary_700,
                   )
@@ -61,17 +61,17 @@ class ProfileView extends StatelessWidget {
       listener: (context, state) {
         if (state.status == ProfileStatus.logout) {
           Navigator.pushAndRemoveUntil(context,
-              MaterialPageRoute(builder: (_) => LoginPage()), (route) => false);
+              MaterialPageRoute(builder: (_) => const LoginPage()), (route) => false);
         }
       },
       builder: (context, state) {
         return Container(
-          padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     color: Colors.white),
@@ -80,10 +80,10 @@ class ProfileView extends StatelessWidget {
                     Container(
                       width: 48,
                       height: 48,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           color: DistroColors.tertiary_300),
-                      child: Center(
+                      child: const Center(
                         child: Icon(
                           Icons.person_outline_outlined,
                           size: 32,
@@ -91,7 +91,7 @@ class ProfileView extends StatelessWidget {
                         ),
                       ),
                     ),
-                    HorizontalSeparator(width: 2),
+                    const HorizontalSeparator(width: 2),
                     Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,9 +108,9 @@ class ProfileView extends StatelessWidget {
                         ),
                         Container(
                           padding:
-                              EdgeInsets.symmetric(vertical: 2, horizontal: 16),
+                              const EdgeInsets.symmetric(vertical: 2, horizontal: 16),
                           decoration: BoxDecoration(
-                              color: Color(0xffE3FCEE),
+                              color: const Color(0xffE3FCEE),
                               borderRadius: BorderRadius.circular(12)),
                           child: Text(
                             'Best Employee',
@@ -120,50 +120,50 @@ class ProfileView extends StatelessWidget {
                         )
                       ],
                     ),
-                    Spacer(),
-                    Icon(Icons.edit_outlined, color: DistroColors.black)
+                    const Spacer(),
+                    const Icon(Icons.edit_outlined, color: DistroColors.black)
                   ],
                 ),
               ),
-              VerticalSeparator(height: 2),
+              const VerticalSeparator(height: 2),
               Text(
                 'Account',
                 style: DistroTypography.captionLargeSemiBold
                     .copyWith(color: DistroColors.tertiary_450),
               ),
-              VerticalSeparator(height: 1),
+              const VerticalSeparator(height: 1),
               menuItem(
                   icon: SvgPicture.asset('assets/icons/ic_cerf.svg'),
                   label: 'Awards'),
-              VerticalSeparator(height: 2),
+              const VerticalSeparator(height: 2),
               Text(
                 'Others',
                 style: DistroTypography.captionLargeSemiBold
                     .copyWith(color: DistroColors.tertiary_450),
               ),
-              VerticalSeparator(height: 1),
+              const VerticalSeparator(height: 1),
               menuItem(
                   icon: SvgPicture.asset('assets/icons/ic_language.svg'),
                   label: 'Language'),
-              VerticalSeparator(height: 1),
+              const VerticalSeparator(height: 1),
               menuItem(
                   icon: SvgPicture.asset('assets/icons/ic_privacy.svg'),
                   label: 'Term and Conditions'),
-              VerticalSeparator(height: 1),
+              const VerticalSeparator(height: 1),
               menuItem(
                   icon: SvgPicture.asset('assets/icons/ic_info.svg'),
                   label: 'Help'),
-              VerticalSeparator(height: 1),
+              const VerticalSeparator(height: 1),
               menuItem(
                   icon: SvgPicture.asset('assets/icons/ic_phone.svg'),
                   label: 'Contact Us'),
-              Spacer(),
+              const Spacer(),
               SizedBox(
                 height: 50,
                 width: SizeConfig.screenWidth,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xff88D8FF),
+                      backgroundColor: const Color(0xff88D8FF),
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8))),
@@ -173,7 +173,7 @@ class ProfileView extends StatelessWidget {
                   child: Text(
                     'Log Out',
                     style: DistroTypography.bodySmallSemiBold
-                        .copyWith(color: Color(0xff104087)),
+                        .copyWith(color: const Color(0xff104087)),
                   ),
                 ),
               ),
@@ -186,7 +186,7 @@ class ProfileView extends StatelessWidget {
 
   Widget menuItem({required Widget icon, required String label}) {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
           border: Border.all(color: DistroColors.tertiary_200, width: 1),
           color: Colors.white,
@@ -194,7 +194,7 @@ class ProfileView extends StatelessWidget {
       child: Row(
         children: [
           icon,
-          HorizontalSeparator(width: 2),
+          const HorizontalSeparator(width: 2),
           Text(
             label,
             style: DistroTypography.bodySmallSemiBold

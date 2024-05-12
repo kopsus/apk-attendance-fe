@@ -24,11 +24,11 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   bool _isHidePassword = true;
   bool _enableButton = false;
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +48,8 @@ class _LoginViewState extends State<LoginView> {
             ),
           ),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-            decoration: BoxDecoration(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+            decoration: const BoxDecoration(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
                 color: DistroColors.white),
             child: ConstrainedBox(
@@ -75,7 +75,7 @@ class _LoginViewState extends State<LoginView> {
                     Text("Email",
                         style: DistroTypography.bodyLargeSemiBold
                             .copyWith(color: DistroColors.tertiary_600)),
-                    VerticalSeparator(height: 1),
+                    const VerticalSeparator(height: 1),
                     DistroTextField(
                       placeholder: 'Email Address',
                       controller: _emailController,
@@ -91,11 +91,11 @@ class _LoginViewState extends State<LoginView> {
                         }
                       },
                     ),
-                    VerticalSeparator(height: 2),
+                    const VerticalSeparator(height: 2),
                     Text("Password",
                         style: DistroTypography.bodyLargeSemiBold
                             .copyWith(color: DistroColors.tertiary_600)),
-                    VerticalSeparator(height: 1),
+                    const VerticalSeparator(height: 1),
                     DistroTextField(
                       placeholder: 'Password',
                       controller: _passwordController,
@@ -119,7 +119,7 @@ class _LoginViewState extends State<LoginView> {
                         }
                       },
                     ),
-                    VerticalSeparator(height: 2),
+                    const VerticalSeparator(height: 2),
                     Align(
                       alignment: Alignment.centerRight,
                       child: Text(
@@ -128,14 +128,14 @@ class _LoginViewState extends State<LoginView> {
                             .copyWith(color: DistroColors.tertiary_500),
                       ),
                     ),
-                    VerticalSeparator(height: 3),
+                    const VerticalSeparator(height: 3),
                     BlocConsumer<LoginBloc, LoginState>(
                       listener: (context, state) {
                         if (state.status == LoginStatus.success) {
                           Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                  builder: (_) => DashboardPage()),
+                                  builder: (_) => const DashboardPage()),
                               (route) => false);
                         }
                         if (state.status == LoginStatus.failed) {
@@ -143,7 +143,7 @@ class _LoginViewState extends State<LoginView> {
                               backgroundColor: DistroColors.warning_500,
                               content: Text(
                                 state.errorMessage,
-                                style: TextStyle(color: Colors.white),
+                                style: const TextStyle(color: Colors.white),
                               )));
                         }
                       },

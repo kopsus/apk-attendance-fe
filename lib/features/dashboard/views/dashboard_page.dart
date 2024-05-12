@@ -42,7 +42,7 @@ class _DashboardViewState extends State<DashboardView> {
       _currentTime = _getCurrentTime();
       _currentDate = _getCurrentDate();
     });
-    Timer.periodic(Duration(minutes: 1), (timer) {
+    Timer.periodic(const Duration(minutes: 1), (timer) {
       setState(() {
         _currentTime = _getCurrentTime();
         _currentDate = _getCurrentDate();
@@ -71,6 +71,7 @@ class _DashboardViewState extends State<DashboardView> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return DefaultTabController(
       length: 5,
       child: Scaffold(
@@ -81,8 +82,8 @@ class _DashboardViewState extends State<DashboardView> {
               children: [
                 //background
                 Container(
-                  width: SizeConfig.screenWidth,
-                  height: SizeConfig.screenHeight,
+                  width: double.infinity,
+                  height: double.infinity,
                   decoration: const BoxDecoration(
                       gradient: LinearGradient(
                           begin: Alignment.topCenter,
@@ -96,29 +97,29 @@ class _DashboardViewState extends State<DashboardView> {
                 //clock-in or clock-out
               ],
             ),
-            SizedBox(),
-            SizedBox(),
-            SizedBox(),
-            ProfilePage()
+            const SizedBox(),
+            const SizedBox(),
+            const SizedBox(),
+            const ProfilePage()
           ],
         ),
         bottomNavigationBar: Container(
           decoration: BoxDecoration(color: Colors.white, boxShadow: [
             BoxShadow(
-                offset: Offset(0, -4),
-                color: Color(0xff18274B).withOpacity(.1),
+                offset: const Offset(0, -4),
+                color: const Color(0xff18274B).withOpacity(.1),
                 spreadRadius: -2,
                 blurRadius: 4),
             BoxShadow(
-                offset: Offset(0, -2),
-                color: Color(0xff18274B).withOpacity(.12),
+                offset: const Offset(0, -2),
+                color: const Color(0xff18274B).withOpacity(.12),
                 spreadRadius: -2,
                 blurRadius: 4)
           ]),
           child: TabBar(
-            labelPadding: EdgeInsets.symmetric(horizontal: 4),
+            labelPadding: const EdgeInsets.symmetric(horizontal: 4),
             padding: EdgeInsets.zero,
-            indicator: BoxDecoration(),
+            indicator: const BoxDecoration(),
             unselectedLabelStyle: DistroTypography.captionLargeRegular
                 .copyWith(color: DistroColors.tertiary_500),
             unselectedLabelColor: DistroColors.tertiary_500,
@@ -127,8 +128,8 @@ class _DashboardViewState extends State<DashboardView> {
             labelColor: DistroColors.primary_600,
             tabs: [
               Container(
-                padding: EdgeInsets.fromLTRB(8, 8, 0, 8),
-                child: Column(
+                padding: const EdgeInsets.fromLTRB(8, 8, 0, 8),
+                child: const Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(Icons.home_outlined),
@@ -138,8 +139,8 @@ class _DashboardViewState extends State<DashboardView> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 8),
-                child: Column(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: const Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(Icons.calendar_month_outlined),
@@ -149,8 +150,8 @@ class _DashboardViewState extends State<DashboardView> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 8),
-                child: Column(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: const Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(Icons.people_outline),
@@ -160,8 +161,8 @@ class _DashboardViewState extends State<DashboardView> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 8),
-                child: Column(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: const Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(Icons.history_outlined),
@@ -171,8 +172,8 @@ class _DashboardViewState extends State<DashboardView> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.fromLTRB(0, 8, 8, 8),
-                child: Column(
+                padding: const EdgeInsets.fromLTRB(0, 8, 8, 8),
+                child: const Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(Icons.person_outlined),
@@ -204,7 +205,7 @@ class _DashboardViewState extends State<DashboardView> {
                   alignment: Alignment.topCenter,
                   child: Container(
                     margin: EdgeInsets.only(
-                        top: (SizeConfig.safeBlockVertical * 10) + 30),
+                        top: 110),
                     child: BlocConsumer<DashboardBloc, DashboardState>(
                       listener: (context, state) {
                         if (state.status == DashboardStatus.initSuccess) {
@@ -244,7 +245,7 @@ class _DashboardViewState extends State<DashboardView> {
                                               ),
                                             ],
                                           ),
-                                          VerticalSeparator(height: 2),
+                                          const VerticalSeparator(height: 2),
                                           Image.asset(
                                             'assets/illustration/location_off.png',
                                             width:
@@ -252,7 +253,7 @@ class _DashboardViewState extends State<DashboardView> {
                                                     60,
                                             fit: BoxFit.fitWidth,
                                           ),
-                                          VerticalSeparator(height: 2),
+                                          const VerticalSeparator(height: 2),
                                           Text(
                                             'Enable Location for Seamless Attendance',
                                             style: DistroTypography
@@ -312,7 +313,7 @@ class _DashboardViewState extends State<DashboardView> {
                                             ),
                                           ],
                                         ),
-                                        VerticalSeparator(height: 2),
+                                        const VerticalSeparator(height: 2),
                                         Image.asset(
                                           'assets/illustration/not_near_location.png',
                                           width:
@@ -320,7 +321,7 @@ class _DashboardViewState extends State<DashboardView> {
                                                   60,
                                           fit: BoxFit.fitWidth,
                                         ),
-                                        VerticalSeparator(height: 2),
+                                        const VerticalSeparator(height: 2),
                                         Text(
                                           'You’re outside the attendance area',
                                           style: DistroTypography
@@ -329,7 +330,7 @@ class _DashboardViewState extends State<DashboardView> {
                                                   color: DistroColors
                                                       .tertiary_700),
                                         ),
-                                        VerticalSeparator(height: 1),
+                                        const VerticalSeparator(height: 1),
                                         Text(
                                           'Sorry, it looks like you are outside the absence area. To continue, please do so with permission.',
                                           style: DistroTypography
@@ -359,7 +360,7 @@ class _DashboardViewState extends State<DashboardView> {
                               MaterialPageRoute(
                                   builder: (_) => BlocProvider.value(
                                         value: context.read<DashboardBloc>(),
-                                        child: MapPage(),
+                                        child: const MapPage(),
                                       )));
                         }
                       },
@@ -377,11 +378,11 @@ class _DashboardViewState extends State<DashboardView> {
                                 style: DistroTypography.heading4.copyWith(
                                     fontWeight: FontWeight.w600,
                                     color: DistroColors.tertiary_50)),
-                            VerticalSeparator(height: .5),
+                            const VerticalSeparator(height: .5),
                             Text(_currentDate,
                                 style: DistroTypography.bodySmallRegular
                                     .copyWith(color: DistroColors.tertiary_50)),
-                            VerticalSeparator(height: 3),
+                            const VerticalSeparator(height: 3),
                             InkWell(
                               onTap: () {
                                 if (state.status == DashboardStatus.failed) {
@@ -409,7 +410,7 @@ class _DashboardViewState extends State<DashboardView> {
                                     borderRadius: BorderRadius.circular(24),
                                     color: DistroColors.success_500,
                                     gradient: state.isClockIn
-                                        ? LinearGradient(
+                                        ? const LinearGradient(
                                             begin: Alignment.topRight,
                                             end: Alignment.bottomLeft,
                                             colors: [
@@ -428,7 +429,7 @@ class _DashboardViewState extends State<DashboardView> {
                                         'assets/illustration/hand.svg',
                                         width: 56,
                                         fit: BoxFit.fitWidth),
-                                    VerticalSeparator(height: 1),
+                                    const VerticalSeparator(height: 1),
                                     Text(
                                         state.isClockIn
                                             ? 'Clock-out'
@@ -441,16 +442,16 @@ class _DashboardViewState extends State<DashboardView> {
                                 ),
                               ),
                             ),
-                            VerticalSeparator(height: 3),
+                            const VerticalSeparator(height: 3),
                             SizedBox(
                               width: SizeConfig.safeBlockHorizontal * 70,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Icon(Icons.location_on,
+                                  const Icon(Icons.location_on,
                                       color: DistroColors.tertiary_50,
                                       size: 20),
-                                  HorizontalSeparator(width: 2),
+                                  const HorizontalSeparator(width: 2),
                                   Expanded(
                                     child: Text(state.location,
                                         style: DistroTypography.bodySmallRegular
@@ -461,7 +462,7 @@ class _DashboardViewState extends State<DashboardView> {
                                 ],
                               ),
                             ),
-                            VerticalSeparator(height: 3),
+                            const VerticalSeparator(height: 3),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
@@ -479,7 +480,7 @@ class _DashboardViewState extends State<DashboardView> {
                                     label: 'Working Hrs'),
                               ],
                             ),
-                            VerticalSeparator(height: 3),
+                            const VerticalSeparator(height: 3),
                             bottomSheet(),
                           ],
                         );
@@ -502,25 +503,25 @@ class _DashboardViewState extends State<DashboardView> {
         minHeight: SizeConfig.safeBlockVertical * 40,
       ),
       child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-          decoration: BoxDecoration(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+          decoration: const BoxDecoration(
               color: DistroColors.tertiary_50,
               borderRadius: BorderRadius.vertical(top: Radius.circular(16))),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               menuSection(),
-              VerticalSeparator(height: 3),
+              const VerticalSeparator(height: 3),
               Text('Your Activity',
                   style: DistroTypography.bodyLargeSemiBold
                       .copyWith(color: DistroColors.tertiary_700)),
-              VerticalSeparator(height: 3),
+              const VerticalSeparator(height: 3),
               BlocBuilder<DashboardBloc, DashboardState>(
                 builder: (context, state) {
                   return ListView.separated(
                     padding: EdgeInsets.zero,
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: state.historyList.length,
                     itemBuilder: (context, index) {
                       var asset = state.historyList[index].action == 'CHECK_IN'
@@ -549,7 +550,7 @@ class _DashboardViewState extends State<DashboardView> {
                           color: color,
                           status: state.historyList[index].status.toString());
                     },
-                    separatorBuilder: (_, __) => VerticalSeparator(height: 2),
+                    separatorBuilder: (_, __) => const VerticalSeparator(height: 2),
                   );
                 },
               )
@@ -561,8 +562,8 @@ class _DashboardViewState extends State<DashboardView> {
   GridView menuSection() {
     return GridView.builder(
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
-      padding: EdgeInsets.only(top: 8),
+      physics: const NeverScrollableScrollPhysics(),
+      padding: const EdgeInsets.only(top: 8),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisSpacing: SizeConfig.safeBlockHorizontal * 2,
           mainAxisSpacing: SizeConfig.safeBlockVertical * 2,
@@ -574,7 +575,7 @@ class _DashboardViewState extends State<DashboardView> {
 
   Container menuItem(int index) {
     return Container(
-      padding: EdgeInsets.all(8),
+      padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: DistroColors.white,
@@ -582,7 +583,7 @@ class _DashboardViewState extends State<DashboardView> {
       child: Column(
         children: [
           Image.asset(menus[index].assets, height: 28, fit: BoxFit.fitHeight),
-          VerticalSeparator(height: .5),
+          const VerticalSeparator(height: .5),
           Text(
             menus[index].label,
             style: DistroTypography.captionLargeSemiBold
@@ -601,11 +602,11 @@ class _DashboardViewState extends State<DashboardView> {
       child: Column(
         children: [
           SvgPicture.asset(assets, width: 26, fit: BoxFit.fitWidth),
-          VerticalSeparator(height: 1),
-          Text(time != null ? time : '--:--',
+          const VerticalSeparator(height: 1),
+          Text(time ?? '--:--',
               style: DistroTypography.bodyLargeSemiBold
                   .copyWith(color: DistroColors.tertiary_50)),
-          VerticalSeparator(height: .25),
+          const VerticalSeparator(height: .25),
           Text(label,
               style: DistroTypography.captionLargeRegular
                   .copyWith(color: DistroColors.tertiary_50))
@@ -636,10 +637,10 @@ class _DashboardViewState extends State<DashboardView> {
                         Container(
                           width: 48,
                           height: 48,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: DistroColors.tertiary_300),
-                          child: Center(
+                          child: const Center(
                             child: Icon(
                               Icons.person_outline_outlined,
                               size: 32,
@@ -647,7 +648,7 @@ class _DashboardViewState extends State<DashboardView> {
                             ),
                           ),
                         ),
-                        HorizontalSeparator(width: 3),
+                        const HorizontalSeparator(width: 3),
                         Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -664,8 +665,8 @@ class _DashboardViewState extends State<DashboardView> {
                             )
                           ],
                         ),
-                        Spacer(),
-                        Icon(
+                        const Spacer(),
+                        const Icon(
                           Icons.notifications_outlined,
                           color: DistroColors.white,
                         )
@@ -698,7 +699,7 @@ class _DashboardViewState extends State<DashboardView> {
       required Color color,
       required String status}) {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
           color: DistroColors.white, borderRadius: BorderRadius.circular(12)),
       child: Row(
@@ -706,31 +707,31 @@ class _DashboardViewState extends State<DashboardView> {
           Container(
             width: 32,
             height: 32,
-            padding: EdgeInsets.all(8),
+            padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(shape: BoxShape.circle, color: color),
             child: SvgPicture.asset(asset),
           ),
-          HorizontalSeparator(width: 5),
+          const HorizontalSeparator(width: 5),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(title,
                   style: DistroTypography.bodyLargeSemiBold
                       .copyWith(color: DistroColors.tertiary_600)),
-              VerticalSeparator(height: .5),
+              const VerticalSeparator(height: .5),
               Text(date,
                   style: DistroTypography.bodySmallRegular
                       .copyWith(color: DistroColors.tertiary_400))
             ],
           ),
-          Spacer(),
+          const Spacer(),
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(time,
                   style: DistroTypography.bodyLargeSemiBold
                       .copyWith(color: DistroColors.tertiary_600)),
-              VerticalSeparator(height: .5),
+              const VerticalSeparator(height: .5),
               Text(status,
                   style: DistroTypography.bodySmallRegular
                       .copyWith(color: DistroColors.tertiary_400))

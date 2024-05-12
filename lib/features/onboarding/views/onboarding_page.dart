@@ -26,7 +26,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
         if (state.isLogin) {
           Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: (_) => DashboardPage()),
+              MaterialPageRoute(builder: (_) => const DashboardPage()),
               (route) => false);
         }
       },
@@ -54,7 +54,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                                 style: DistroTypography.bodySmallSemiBold
                                     .copyWith(
                                         color: DistroColors.tertiary_700))),
-                        HorizontalSeparator(width: 1),
+                        const HorizontalSeparator(width: 1),
                         const Icon(Icons.arrow_forward_ios_rounded,
                             size: 14, color: DistroColors.tertiary_700),
                       ],

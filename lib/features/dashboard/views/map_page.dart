@@ -38,7 +38,7 @@ class _MapPageState extends State<MapPage> {
           if (state.status == DashboardStatus.postSuccess) {
             Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: (_) => DashboardPage()),
+                MaterialPageRoute(builder: (_) => const DashboardPage()),
                 (route) => false);
           }
           if (state.status == DashboardStatus.failed) {
@@ -67,7 +67,7 @@ class _MapPageState extends State<MapPage> {
                     MarkerLayer(markers: [
                       Marker(
                           point: LatLng(state.companyLat, state.companyLong),
-                          child: Icon(
+                          child: const Icon(
                             size: 40,
                             Icons.location_on,
                             color: Colors.red,
@@ -78,14 +78,14 @@ class _MapPageState extends State<MapPage> {
                           point: LatLng(state.position!.latitude,
                               state.position!.longitude),
                           child: Container(
-                            padding: EdgeInsets.all(4),
-                            decoration: BoxDecoration(
+                            padding: const EdgeInsets.all(4),
+                            decoration: const BoxDecoration(
                                 color: DistroColors.white,
                                 shape: BoxShape.circle),
                             child: Container(
                               width: 20,
                               height: 20,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                   color: DistroColors.warning_500,
                                   shape: BoxShape.circle),
                             ),
@@ -102,12 +102,12 @@ class _MapPageState extends State<MapPage> {
                         child: Container(
                             width: 32,
                             height: 32,
-                            padding: EdgeInsets.all(8),
+                            padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color:
                                     DistroColors.tertiary_400.withOpacity(.6)),
-                            child: Center(
+                            child: const Center(
                                 child: Icon(Icons.arrow_back_ios_new,
                                     color: DistroColors.black, size: 15))))),
               ],
@@ -123,9 +123,9 @@ class _MapPageState extends State<MapPage> {
           return Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
               child: Container(
-                padding: EdgeInsets.all(24),
+                padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: DistroColors.tertiary_50,
@@ -152,13 +152,13 @@ class _MapPageState extends State<MapPage> {
                                 .copyWith(color: DistroColors.tertiary_300))
                       ],
                     ),
-                    VerticalSeparator(height: 2),
+                    const VerticalSeparator(height: 2),
                     Text(
                       state.companyAddress,
                       style: DistroTypography.bodyLargeRegular
                           .copyWith(color: DistroColors.tertiary_600),
                     ),
-                    VerticalSeparator(height: 2),
+                    const VerticalSeparator(height: 2),
                     BlocBuilder<DashboardBloc, DashboardState>(
                       builder: (context, state) {
                         if (state.status == DashboardStatus.loading) {
@@ -173,7 +173,7 @@ class _MapPageState extends State<MapPage> {
                           children: [
                             DistroOutlineButton(
                                 width: SizeConfig.safeBlockHorizontal * 35,
-                                label: Text('Refresh'),
+                                label: const Text('Refresh'),
                                 onPressed: () {
                                   context
                                       .read<DashboardBloc>()
@@ -181,7 +181,7 @@ class _MapPageState extends State<MapPage> {
                                 }),
                             DistroElevatedButton(
                                 width: SizeConfig.safeBlockHorizontal * 35,
-                                label: Text('Confirm'),
+                                label: const Text('Confirm'),
                                 onPressed: () async {
                                   var image = await ImagePicker().pickImage(
                                       preferredCameraDevice: CameraDevice.front,

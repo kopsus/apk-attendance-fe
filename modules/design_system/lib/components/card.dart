@@ -13,16 +13,16 @@ class DistroCard extends StatelessWidget {
         color: DistroColors.tertiary_50,
         boxShadow: [
           BoxShadow(
-            offset: Offset(0, 8),
+            offset: const Offset(0, 8),
             blurRadius: 16,
             spreadRadius: -6,
-            color: Color(0xff18274B).withOpacity(.08)
+            color: const Color(0xff18274B).withOpacity(.08)
           ),
           BoxShadow(
-            offset: Offset(0, 6),
+            offset: const Offset(0, 6),
             blurRadius: 8,
             spreadRadius: -6,
-            color: Color(0xff18274B).withOpacity(.12)
+            color: const Color(0xff18274B).withOpacity(.12)
           )
         ]
       ),

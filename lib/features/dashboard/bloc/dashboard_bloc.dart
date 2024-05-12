@@ -35,7 +35,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
           position: position,
           accuracy: position.accuracy,
           isNearLocation: null));
-    } on LocationServiceDisabledException catch (e) {
+    } on LocationServiceDisabledException {
       emit(state.copyWith(
           status: DashboardStatus.locationDisable, isNearLocation: null));
     } catch (e) {
@@ -54,7 +54,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
           status: DashboardStatus.success,
           position: position,
           accuracy: position.accuracy));
-    } on LocationServiceDisabledException catch (e) {
+    } on LocationServiceDisabledException {
       emit(state.copyWith(
         status: DashboardStatus.locationDisable,
       ));
@@ -179,42 +179,42 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
   }
 
   Future<Position> _determinePositionV2() async {
-    Location location = new Location();
+    Location location = Location();
 
-    bool _serviceEnabled;
-    PermissionStatus _permissionGranted;
-    LocationData _locationData;
+    bool serviceEnabled;
+    PermissionStatus permissionGranted;
+    LocationData locationData;
 
-    _serviceEnabled = await location.serviceEnabled();
-    if (!_serviceEnabled) {
-      _serviceEnabled = await location.requestService();
-      if (!_serviceEnabled) {
-        throw LocationServiceDisabledException();
+    serviceEnabled = await location.serviceEnabled();
+    if (!serviceEnabled) {
+      serviceEnabled = await location.requestService();
+      if (!serviceEnabled) {
+        throw const LocationServiceDisabledException();
       }
     }
 
-    _permissionGranted = await location.hasPermission();
-    if (_permissionGranted == PermissionStatus.denied) {
-      _permissionGranted = await location.requestPermission();
-      if (_permissionGranted != PermissionStatus.granted) {
-        throw LocationServiceDisabledException();
+    permissionGranted = await location.hasPermission();
+    if (permissionGranted == PermissionStatus.denied) {
+      permissionGranted = await location.requestPermission();
+      if (permissionGranted != PermissionStatus.granted) {
+        throw const LocationServiceDisabledException();
       }
     }
 
-    _locationData = await location.getLocation();
+    locationData = await location.getLocation();
 
     return Position(
-        longitude: _locationData.longitude ?? 0.0,
-        latitude: _locationData.latitude ?? 0.0,
+        longitude: locationData.longitude ?? 0.0,
+        latitude: locationData.latitude ?? 0.0,
         timestamp: DateTime.fromMillisecondsSinceEpoch(
-            _locationData.time?.toInt() ?? 0),
-        accuracy: _locationData.accuracy ?? 0,
-        altitude: _locationData.altitude ?? 0,
-        heading: _locationData.heading ?? 0,
-        speed: _locationData.speed ?? 0,
-        speedAccuracy: _locationData.accuracy ?? 0,
-        altitudeAccuracy: _locationData.verticalAccuracy ?? 0,
-        headingAccuracy: _locationData.headingAccuracy ?? 0);
+            locationData.time?.toInt() ?? 0),
+        accuracy: locationData.accuracy ?? 0,
+        altitude: locationData.altitude ?? 0,
+        heading: locationData.heading ?? 0,
+        speed: locationData.speed ?? 0,
+        speedAccuracy: locationData.accuracy ?? 0,
+        altitudeAccuracy: locationData.verticalAccuracy ?? 0,
+        headingAccuracy: locationData.headingAccuracy ?? 0);
   }
 
   Future<String> getAndSetLocation(Position position) async {
